@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <script src="https://kit.fontawesome.com/325c6d981f.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .wColor{
+            color: orange;
+        }
+        .iColor{
+            color: blue;
+        }
+        .sClolor{
+            color: green
+        }
+        .xColor{
+            color: #ccc
+        }
+        .firstInfo{
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .secondInfo{
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 0.7;
+            margin-top: 6px;
+        }
+        .fas{
+            padding: 10px;
+            font-size: 24px;
+        }
+        .fa-times{
+            position:absolute;
+            left: 90%;
+        }
+        .message{
+            width: 350px;
+            margin: 30px;
+            right: 100%;
+            position: absolute;
+            box-shadow: 0 4px 2px 2px #ccc;
+        }
+        .number1, .number2, .number3{
+            float: left;
+        }
+        .information{
+            top: 0;
+            border-left: 8px solid blue;
+        }
+        .warning{
+            top:100px;
+            border-left: 8px solid orange;
+        }
+        .success{
+            top: 200px;
+            border-left: 8px solid green;
+        }
+        span{
+            display: block
+        }
+        button{
+            padding: 16px;
+            float: left;
+            display: block;
+            margin: 350px 30px;
+        }
+        @keyframes toast {
+            from {left: 100%; opacity: 0;}
+            to {left: 0; opacity: 1;}
+        }
+        @keyframes untoast {
+            from {left: 0; opacity:1;}
+            to {left: 100%; opacity:0;}
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="message information">
+            <i class="fas fa-info-circle number1 iColor"></i>
+             <span class="firstInfo number1">
+                 Did you know
+                <span class="secondInfo">Hear is something that you migth to know</span>
+            </span>
+            <i class="fas fa-times number1 xColor"></i>
+        </div>
+        
+        <div class="message warning">
+            <i class="fas fa-exclamation-circle number2 wColor"></i>
+            <span class="firstInfo number2">
+                Uh oh, something went wrong
+                <span class="secondInfo">Sory, there was a problem with your request</span>
+            </span>
+            <i class="fas fa-times number2 xColor"></i>
+        </div>
+        
+        <div class="message success">
+            <i class="fas fa-check-circle number3 sClolor"></i>
+            <span class="firstInfo number3">
+                Yay! Everything worked!
+                <span class="secondInfo">Congrats on the internet loading your request</span>
+            </span>
+            <i class="fas fa-times number3 xColor"></i>
+        </div>
+
+        <button class="btn warning"></button>
+        <button class="btn information"></button>
+        <button class="btn success"></button>
+    </div>
+    <script>
+        const btns = document.querySelectorAll('.btn')
+        const close = document.querySelectorAll('.fa-times')
+        const messages = document.querySelectorAll('.message')
+      
+        for(const btn of btns){
+            btn.addEventListener('click',function(){
+                // messages.forEach((element) => {
+                //     element.style.left='unset'
+                // })
+                document.querySelector(`.${btn.classList.item(1)}`).style.animation = 'toast 2s ease'
+                document.querySelector(`.${btn.classList.item(1)}`).style.left = '0'
+            })
+        }
+        for(var i = 0; i <messages.length; i++) {
+            const j = i
+            close[j].onclick = function(){
+                messages[j].style.animation = 'untoast 1s ease'
+                messages[j].style.left = 'unset'
+            }
+        }
+    </script>
+</body>
+</html>
